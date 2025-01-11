@@ -43,4 +43,20 @@ export class CoingeckoService {
         }
     }
 
+    async getCoinMarketChart(coin: string, days: number): Promise<any> {
+        try {
+            const response = await axios.get(
+                `${this.apiUrl}/coins/${coin}/market_chart`,
+                { params: { vs_currency: 'usd', days } }
+            );
+            return response.data;
+        } catch (error) {
+            throw new HttpException(
+                error.response?.data || 'Failed to fetch market chart',
+                error.response?.status || HttpStatus.INTERNAL_SERVER_ERROR,
+            );
+        }
+    }
+
+
 }
