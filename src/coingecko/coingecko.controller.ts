@@ -20,4 +20,13 @@ export class CoingeckoController {
         return this.coingeckoService.getTrendingCoins();
     }
 
+    @Get('market-chart')
+    async getCoinMarketChart(
+        @Query('coin') coin: string,
+        @Query('days') days: number,
+    ) {
+        return this.coingeckoService.getCoinMarketChart(coin, days);
+    }
+
+
 }
